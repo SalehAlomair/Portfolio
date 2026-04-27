@@ -122,7 +122,8 @@ function SectionHeading({ eyebrow, title, description }) {
 
 function ProductCard({ item }) {
   return (
-    <article className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-6 shadow-glow backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05] sm:p-8">
+    <a href={item.link} target="_blank" rel="noreferrer" className="block">
+      <article className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-6 shadow-glow backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05] sm:p-8 cursor-pointer">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-60" />
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -154,15 +155,14 @@ function ProductCard({ item }) {
           <span key={tech} className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-white/70 transition group-hover:border-white/20 group-hover:bg-white/[0.06]">
             {tech}
           </span>
-        ))}
-      </div>
-
-      <a
-        href={item.link}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white/85 transition group-hover:translate-x-1 group-hover:text-white"
-      >
+        <div className="mt-8">
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-white/85 transition group-hover:translate-x-1 group-hover:text-white">
+            View project
+            <span aria-hidden="true">↗</span>
+          </span>
+        </div>
+      </article>
+      </a>
         View project
         <span aria-hidden="true">↗</span>
       </a>
@@ -355,45 +355,69 @@ function App() {
           </Reveal>
 
           <div className="mt-16 grid gap-6 md:grid-cols-2">
-            {[
-              {
-                label: 'Email',
-                value: 'salehomair1424@gmail.com',
-                href: 'mailto:salehomair1424@gmail.com',
-              },
-              {
-                label: 'GitHub',
-                value: '@SalehAlomair',
-                href: 'https://github.com/SalehAlomair',
-              },
-              {
-                label: 'LinkedIn',
-                value: 'Saleh-Alomair',
-                href: 'https://www.linkedin.com/in/saleh-alomair-0aa833361/',
-              },
-              {
-                label: 'X / Twitter',
-                value: '@RedModule',
-                href: 'https://twitter.com/RedModule',
-              },
-            ].map((contact) => (
-              <Reveal key={contact.label}>
-                <a
-                  href={contact.href}
-                  target={contact.href.startsWith('http') ? '_blank' : '_self'}
-                  rel={contact.href.startsWith('http') ? 'noreferrer' : undefined}
-                  className="group flex h-full items-center justify-between rounded-[26px] border border-white/10 bg-white/[0.03] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.06]"
-                >
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/35">{contact.label}</p>
-                    <p className="mt-3 font-display text-xl font-semibold tracking-tight text-white">{contact.value}</p>
-                  </div>
-                  <span className="text-xl text-white/40 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white">
-                    ↗
-                  </span>
-                </a>
-              </Reveal>
-            ))}
+              {[
+                {
+                  label: 'Email',
+                  value: 'salehomair1424@gmail.com',
+                  href: 'mailto:salehomair1424@gmail.com',
+                },
+                {
+                  label: 'GitHub',
+                  value: '@SalehAlomair',
+                  href: 'https://github.com/SalehAlomair',
+                },
+                {
+                  label: 'LinkedIn',
+                  value: 'Saleh-Alomair',
+                  href: 'https://www.linkedin.com/in/saleh-alomair-0aa833361/',
+                },
+                {
+                  label: 'X',
+                  value: '@RedModule',
+                  href: 'https://twitter.com/RedModule',
+                },
+              ].map((contact) => (
+                <Reveal key={contact.label}>
+                  <a
+                    href={contact.href}
+                    target={contact.href.startsWith('http') ? '_blank' : '_self'}
+                    rel={contact.href.startsWith('http') ? 'noreferrer' : undefined}
+                    className="group flex h-full items-center justify-between rounded-[26px] border border-white/10 bg-white/[0.03] p-6 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.06]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-black/30 border border-white/8 text-white/80">
+                        {contact.label === 'Email' && (
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2V7a2 2 0 00-2-2H3a2 2 0 00-2 2v7a2 2 0 002 2z" />
+                          </svg>
+                        )}
+                        {contact.label === 'GitHub' && (
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.28 3.438 9.754 8.205 11.33.6.11.82-.26.82-.577 0-.285-.01-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.746.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.776.42-1.304.762-1.604-2.665-.303-5.467-1.332-5.467-5.93 0-1.31.468-2.382 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.301 1.23a11.52 11.52 0 013.003-.404c1.02.005 2.046.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.838 1.235 1.91 1.235 3.22 0 4.61-2.807 5.625-5.48 5.92.431.372.815 1.102.815 2.222 0 1.606-.014 2.902-.014 3.296 0 .319.216.694.824.576C20.565 22.252 24 17.78 24 12.5 24 5.87 18.63.5 12 .5z" />
+                          </svg>
+                        )}
+                        {contact.label === 'LinkedIn' && (
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 10.28h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.89v1.23h.04c.4-.76 1.37-1.56 2.82-1.56 3.01 0 3.57 1.98 3.57 4.56v4.77z" />
+                          </svg>
+                        )}
+                        {contact.label === 'X' && (
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.77 2.58a1 1 0 0 0-1.03-.18l-5.3 2.12 6.02-6.02a1 1 0 1 0-1.41-1.41L16.03 2.5 9.98-3.56A1 1 0 0 0 8.56-2.14L14.62 4.9 2.7-7.02A1 1 0 1 0 1.29-5.62L13.21 6.3 7.15 12.36a1 1 0 1 0 1.41 1.41l6.06-6.06 6.06 6.06a1 1 0 0 0 1.41-1.41L17.99 4.9l5.29-2.12a1 1 0 0 0 .49-1.9z" />
+                          </svg>
+                        )}
+                      </span>
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/35">{contact.label}</p>
+                        <p className="mt-3 font-display text-xl font-semibold tracking-tight text-white">{contact.value}</p>
+                      </div>
+                    </div>
+                    <span className="text-xl text-white/40 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white">
+                      ↗
+                    </span>
+                  </a>
+                </Reveal>
+              ))}
           </div>
         </section>
       </main>
