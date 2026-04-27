@@ -152,21 +152,24 @@ function ProductCard({ item }) {
 
       <div className="mt-8 flex flex-wrap gap-2.5">
         {item.stack.map((tech) => (
-          <span key={tech} className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-white/70 transition group-hover:border-white/20 group-hover:bg-white/[0.06]">
+          <span
+            key={tech}
+            className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-white/70 transition group-hover:border-white/20 group-hover:bg-white/[0.06]"
+          >
             {tech}
           </span>
-        <div className="mt-8">
-          <span className="inline-flex items-center gap-2 text-sm font-semibold text-white/85 transition group-hover:translate-x-1 group-hover:text-white">
-            View project
-            <span aria-hidden="true">↗</span>
-          </span>
-        </div>
-      </article>
-      </a>
-        View project
-        <span aria-hidden="true">↗</span>
-      </a>
+        ))}
+      </div>
+
+      <div className="mt-8">
+        <span className="inline-flex items-center gap-2 text-sm font-semibold text-white/85 transition group-hover:translate-x-1 group-hover:text-white">
+          View project
+          <span aria-hidden="true">↗</span>
+        </span>
+      </div>
+
     </article>
+    </a>
   );
 }
 
