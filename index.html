@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saleh | Portfolio</title>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js"></script>
+
+</head>
+<body>
+  
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Saleh</div>
+      <div class="nav-links">
+        <a href="#hero">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <div class="fade-in" style="animation-delay: 0.2s;">
+        <h1>Hi, I'm <span class="hero-title">Saleh</span></h1>
+      </div>
+      
+      <div class="fade-in" style="animation-delay: 0.4s;">
+        <div id="typed" class="hero-subtitle"></div>
+      </div>
+      
+      <div class="fade-in btn-group" style="animation-delay: 0.6s;">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="particles-js"></div>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card fade-in" style="animation-delay: 0.1s;" data-link="https://github.com/SalehAlomair/StudentGradingSystem">
+          <div class="project-icon blue">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <h3 class="project-title">Student Grading System</h3>
+          <p class="project-description">
+            Java-based GUI application featuring role-based dashboards and comprehensive database integration for efficient student management.
+          </p>
+          <div class="project-tags">
+            <span class="tag blue">Java</span>
+            <span class="tag green">GUI</span>
+            <span class="tag purple">Database</span>
+          </div>
+        </div>
+        
+        <div class="project-card fade-in" style="animation-delay: 0.2s;" data-link="https://github.com/SalehAlomair/CatDogClassifier">
+          <div class="project-icon green">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3 class="project-title">Teachable Machine Classifier</h3>
+          <p class="project-description">
+            Advanced TensorFlow-powered CLI tool for image classification using state-of-the-art pre-trained machine learning models.
+          </p>
+          <div class="project-tags">
+            <span class="tag orange">TensorFlow</span>
+            <span class="tag red">ML</span>
+            <span class="tag blue">CLI</span>
+          </div>
+        </div>
+        
+        <div class="project-card fade-in" style="animation-delay: 0.3s;" data-link="https://github.com/SalehAlomair/MyWebsite">
+          <div class="project-icon purple">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <h3 class="project-title">Personal Portfolio</h3>
+          <p class="project-description">
+            Modern, responsive portfolio website built with cutting-edge web technologies and smooth animations for optimal user experience.
+          </p>
+          <div class="project-tags">
+            <span class="tag cyan">HTML/CSS</span>
+            <span class="tag yellow">JavaScript</span>
+            <span class="tag indigo">Responsive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates Section -->
+  <section id="certificates" class="section">
+    <div class="container">
+      <h2 class="section-title">Certificates & Achievements</h2>
+      <div class="certificates-list">
+        <div class="certificate-item fade-in" style="animation-delay: 0.1s;">
+          <div class="certificate-icon blue">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <div class="certificate-content">
+            <h3>Summer Internship at Smart Methods</h3>
+            <p>Professional development in cutting-edge technology solutions</p>
+          </div>
+        </div>
+        
+        <div class="certificate-item fade-in" style="animation-delay: 0.2s;">
+          <div class="certificate-icon green">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="certificate-content">
+            <h3>Complete Machine Learning & Data Science</h3>
+            <p>Comprehensive certification from Udemy in ML and Data Science</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Let's Connect</h2>
+      <div class="contact-grid">
+        <!-- Email -->
+        <div class="contact-item fade-in" style="animation-delay: 0.1s;">
+          <div class="contact-icon email">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div class="contact-content">
+            <h3>Email</h3>
+            <a href="mailto:salehomair1424@gmail.com">salehomair1424@gmail.com</a>
+          </div>
+        </div>
+        
+        <!-- GitHub -->
+        <div class="contact-item fade-in" style="animation-delay: 0.2s;">
+          <div class="contact-icon" style="background: #24292e;">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </div>
+          <div class="contact-content">
+            <h3>GitHub</h3>
+            <a href="https://github.com/SalehAlomair" target="_blank">@SalehAlomair</a>
+          </div>
+        </div>
+
+        <!-- X (Twitter) -->
+        <div class="contact-item fade-in" style="animation-delay: 0.3s;">
+          <div class="contact-icon" style="background: linear-gradient(135deg, #1DA1F2, #0d8ddb);">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"></svg>
+              <path d="M17.53 2.47a2.75 2.75 0 0 1 3.89 3.89l-5.16 5.16 5.16 5.16a2.75 2.75 0 0 1-3.89 3.89l-5.16-5.16-5.16 5.16a2.75 2.75 0 0 1-3.89-3.89l5.16-5.16-5.16-5.16a2.75 2.75 0 0 1 3.89-3.89l5.16 5.16 5.16-5.16z"/>
+            </svg>
+          </div>
+          <div class="contact-content">
+            <h3>X (Twitter)</h3>
+            <a href="https://twitter.com/RedModule" target="_blank">@RedModule</a>
+          </div>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="contact-item fade-in" style="animation-delay: 0.4s;">
+          <div class="contact-icon" style="background: linear-gradient(135deg, #0077B5, #005983);">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 10.28h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.89v1.23h.04c.4-.76 1.37-1.56 2.82-1.56 3.01 0 3.57 1.98 3.57 4.56v4.77z"/>
+            </svg>
+          </div>
+          <div class="contact-content">
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/saleh-alomair-0aa833361/" target="_blank">Saleh-Alomair</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
