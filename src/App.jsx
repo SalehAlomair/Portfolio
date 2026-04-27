@@ -369,7 +369,7 @@ function App() {
               {
                 label: 'LinkedIn',
                 value: 'Saleh-Alomair',
-                href: 'https://www.linkedin.com/in/saleh-alomair',
+                href: 'https://www.linkedin.com/in/saleh-alomair-0aa833361/',
               },
               {
                 label: 'X / Twitter',
