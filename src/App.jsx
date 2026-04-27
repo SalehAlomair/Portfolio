@@ -37,6 +37,66 @@ const projects = [
     stack: ['React', 'Tailwind CSS', 'Responsive UI', 'Motion Design'],
     link: 'https://github.com/SalehAlomair/MyWebsite',
   },
+  {
+    id: '04',
+    title: 'Fatigue Monitor',
+    problem:
+      'Drivers and operators can become dangerously drowsy without a low-friction way to detect it early.',
+    solution:
+      'A Python desktop app that analyzes webcam video using eye-aspect-ratio (EAR) with OpenCV and dlib, and alerts users via a simple Tkinter GUI when signs of fatigue are detected.',
+    impact:
+      'Provides a lightweight, realtime alerting tool to reduce drowsiness-related risk in driving and monitoring scenarios.',
+    stack: ['Python', 'OpenCV', 'dlib', 'Tkinter'],
+    link: 'https://github.com/SalehAlomair/fatigue-monitor',
+  },
+  {
+    id: '05',
+    title: 'Dog Vision Classifier',
+    problem:
+      'Image-based breed classification is challenging without transfer learning and curated data.',
+    solution:
+      'A TensorFlow transfer-learning notebook that trains a classifier over the Stanford Dogs dataset to identify 120 breeds, provided as an experiment in model training and evaluation (Colab-ready).',
+    impact:
+      'Demonstrates practical computer-vision workflows and transfer-learning techniques for real-world image classification tasks.',
+    stack: ['Python', 'TensorFlow', 'Transfer Learning', 'Jupyter'],
+    link: 'https://github.com/SalehAlomair/dog-vision-classifier',
+  },
+  {
+    id: '06',
+    title: 'Saleh Arabic AI Voice Assistant',
+    problem:
+      'Arabic speakers need accessible, locally-run assistants that understand speech and reply naturally in Arabic.',
+    solution:
+      'A Python-based voice assistant combining real-time Arabic speech-to-text, AI understanding (Cohere), and text-to-speech to produce natural Arabic responses with a lightweight GUI.',
+    impact:
+      'Shows capability in speech interfaces, language-specific tooling, and integrating modern AI APIs for natural interaction in Arabic.',
+    stack: ['Python', 'Realtime STT', 'Cohere API', 'gTTS'],
+    link: 'https://github.com/SalehAlomair/Saleh-Arabic-AI-Voice-Assistant',
+  },
+  {
+    id: '07',
+    title: 'Heart Disease Classification',
+    problem:
+      'Early identification of potential heart disease from clinical features is critical but often requires domain-aware modelling.',
+    solution:
+      'An end-to-end ML workflow (EDA, feature engineering, model selection and evaluation) using scikit-learn to predict heart disease from patient data, provided as a reproducible notebook and trained model.',
+    impact:
+      'Produces an interpretable model with strong local performance (~85% accuracy) and demonstrates careful data work for healthcare analytics.',
+    stack: ['Python', 'pandas', 'scikit-learn', 'Jupyter'],
+    link: 'https://github.com/SalehAlomair/heart-disease-classification-ml',
+  },
+  {
+    id: '08',
+    title: 'Spaceship Titanic ML Pipeline',
+    problem:
+      'Kaggle competitions require robust preprocessing, feature engineering, and validation to produce competitive submissions.',
+    solution:
+      'An end-to-end pipeline for the Spaceship Titanic competition covering EDA, group-aware imputation and encoding, model training and ensemble generation, with a reproducible notebook and submission artifacts.',
+    impact:
+      'Delivered a competitive Kaggle submission (public score ~0.8057) and demonstrates production-minded ML workflows.',
+    stack: ['Python', 'pandas', 'XGBoost', 'LightGBM', 'Ensembling'],
+    link: 'https://github.com/SalehAlomair/spaceship-titanic-ml-pipeline',
+  },
 ];
 
 const skills = [
