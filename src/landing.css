@@ -1,0 +1,216 @@
+/* Name as a monument; three living systems beneath it. Brand colours and type
+   remain in index.css. The first screen expands safely under text enlargement. */
+:root { --landing-header-height: 64px; }
+.site-header { height: var(--landing-header-height); padding-block: 8px; }
+.site-header .wordmark { font-size: 20px; font-weight: 650; }
+.site-header nav { gap: 30px; font-size: 14px; }
+.landing-overview {
+  min-height: calc(100svh - var(--landing-header-height));
+  display: grid;
+  grid-template-rows: auto minmax(min-content, 1fr) auto;
+}
+.landing-overview .hero { padding-block: 6px 12px; }
+.landing-overview .hero h1 {
+  font-size: clamp(64px, min(15vw, 24.5svh), 230px);
+  font-weight: 760;
+  line-height: .88;
+  letter-spacing: -.065em;
+  margin-left: -.045em;
+}
+.landing-overview .hero-bottom {
+  flex-direction: row;
+  align-items: center;
+  margin-top: 12px;
+  gap: 28px;
+}
+.landing-overview .positioning > p:first-child {
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.35;
+  max-width: 29em;
+}
+.hero-description-short { display: none; }
+.landing-overview .positioning .location { font-size: 14px; margin-top: 4px; }
+.landing-overview .hero-actions { gap: 8px; padding: 0; }
+.landing-overview .hero-actions .button {
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+}
+.landing-overview .hero-actions .button:not(.primary) { border-color: transparent; }
+.landing-overview .project-list { grid-template-rows: repeat(3, minmax(min-content, 1fr)); gap: 0; border: 0; }
+.landing-overview .project-row { border: 0; background: var(--bg); transition: background-color 240ms ease; }
+.landing-overview .project-row.featured,
+.landing-overview .project-row:last-child { background: var(--surface); }
+.landing-overview .project-inner {
+  display: grid;
+  grid-template-columns: clamp(230px, 23vw, 360px) minmax(0, 1fr) 120px;
+  align-items: center;
+  gap: 24px;
+  height: 100%;
+  min-height: 116px;
+  padding-block: 4px;
+}
+.landing-overview .project-inner > * { grid-column: auto; grid-row: auto; }
+.landing-overview .project-identity h2 {
+  font-size: clamp(28px, 2.85vw, 45px);
+  line-height: 1.05;
+  font-weight: 650;
+  letter-spacing: -.045em;
+  transition: color 220ms ease;
+}
+.landing-overview .featured .project-identity h2 { color: var(--accent); }
+.landing-overview .project-identity > p { font-size: 15px; line-height: 1.45; margin-top: 8px; max-width: 30ch; }
+.landing-overview .project-visual { min-width: 0; width: 100%; padding: 0; }
+.diagram-control {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+.diagram-control:active { transform: none; }
+.diagram-control:focus-visible { outline-offset: 1px; border-radius: 3px; }
+.landing-diagram { display: block; width: 100%; height: 108px; overflow: hidden; }
+.system-rail { stroke: var(--line); stroke-width: 1.2; }
+.system-paper { fill: var(--bg); stroke: var(--muted); stroke-width: 1.2; }
+.paper-back { stroke: var(--line); }
+.paper-middle { stroke: var(--muted); }
+.system-ink { stroke: var(--ink); stroke-width: 1.25; }
+.system-core { fill: var(--bg); stroke: var(--accent); stroke-width: 1.2; }
+.system-aperture { stroke: var(--accent); stroke-width: 2.5; }
+.system-point, .system-gold, .system-packet { fill: var(--accent); }
+.system-packet { offset-distance: 100%; offset-rotate: 0deg; }
+.system-dark, .system-check { stroke: var(--accent-ink); stroke-width: 1.8; }
+.system-current { stroke: var(--accent); stroke-width: 1.7; }
+.system-caption { fill: var(--muted); font: 13px var(--font-body); }
+.system-invitation { fill: var(--accent); }
+.system-terminal { fill: var(--bg); stroke: var(--line); stroke-width: 1; }
+.route-label { fill: var(--muted); font: 13px var(--font-body); }
+.route-light { fill: var(--line); }
+.system-route.is-selected .system-terminal { fill: var(--accent); stroke: var(--accent); }
+.system-route.is-selected .route-label, .system-route.is-selected .route-light { fill: var(--accent-ink); }
+.system-message { fill: var(--bg); stroke: var(--accent); stroke-width: 1.2; }
+.system-ai { fill: var(--accent); font: 650 20px var(--font-body); letter-spacing: -.04em; }
+.system-message-title { fill: var(--ink); font: 600 16px var(--font-body); letter-spacing: -.03em; }
+.system-message-copy { fill: var(--muted); font: 13px var(--font-body); }
+.landing-overview .project-action { min-height: 0; padding: 0; border: 0; justify-content: flex-end; }
+.landing-overview .project-action .button {
+  border: 0;
+  background: none;
+  padding: 0;
+  min-height: 44px;
+  gap: 14px;
+  font-size: 15px;
+}
+.landing-overview .project-action .button > span {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-raised);
+  color: var(--accent);
+  font-size: 22px;
+  transition: background-color 220ms ease, color 220ms ease, transform 320ms var(--ease);
+}
+.landing-overview .project-row:is(:hover, :focus-within) .project-action .button > span {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.landing-overview .project-row:is(:hover, :focus-within) h2 { color: var(--accent); }
+.diagram-control:is(:hover, :focus-visible) .system-paper,
+.diagram-control:is(:hover, :focus-visible) .system-message { stroke: var(--accent); }
+.landing-overview .overview-strip {
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 24px;
+  padding-block: 12px;
+}
+.landing-overview .overview-strip h2 { font-size: 17px; font-weight: 600; letter-spacing: -.025em; }
+.landing-overview .expertise, .landing-overview .contact { min-height: 0; gap: 16px; align-items: center; }
+.landing-overview .expertise { flex-basis: auto; }
+.landing-overview .expertise h2 { padding-block: 4px; padding-right: 16px; border: 0; }
+.landing-overview .expertise ul { padding: 0; font-size: 13px; gap: 6px 16px; }
+.landing-overview .contact { border: 0; padding-left: 16px; }
+.landing-overview .social-links { margin-top: 4px; }
+@media (prefers-reduced-motion: no-preference) {
+  .landing-overview .motion-arrived:not(.landing-diagram) { animation-name: landing-enter; }
+  .system-current { animation: system-trace 1300ms var(--ease) both; }
+  .current-later { animation-delay: 450ms; }
+  .system-packet { offset-rotate: 0deg; animation: system-travel 1600ms cubic-bezier(.2,.7,.3,1) both; }
+  .packet-later { animation-delay: 500ms; }
+  .system-check { animation: system-trace 650ms var(--ease) 850ms both; }
+  .diagram-control:is(:hover, :focus-visible) .system-aperture { animation: aperture-turn 1000ms var(--ease) both; transform-box: fill-box; transform-origin: center; }
+}
+@keyframes landing-enter { from { opacity: .6; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes system-trace { from { stroke-dasharray: 1; stroke-dashoffset: 1; } to { stroke-dasharray: 1; stroke-dashoffset: 0; } }
+@keyframes system-travel { from { offset-distance: 0%; opacity: .4; } to { offset-distance: 100%; opacity: 1; } }
+@keyframes aperture-turn { from { rotate: -35deg; } to { rotate: 0deg; } }
+@media (max-width: 1100px) {
+  .landing-overview .project-inner { grid-template-columns: minmax(220px, .85fr) minmax(0, 1.5fr) 106px; gap: 16px; }
+  .landing-overview .hero-actions .button { font-size: 13px; padding-inline: 12px; }
+  .landing-overview .hero-bottom { align-items: flex-start; }
+  .landing-overview .overview-strip { gap: 16px; }
+  .landing-overview .expertise { gap: 10px; }
+  .landing-overview .expertise ul { gap: 6px 14px; }
+  .landing-overview .contact h2 { display: none; }
+}
+@media (max-width: 700px) {
+  .landing-overview .hero h1 { font-size: 14.5vw; }
+  .landing-overview .hero-bottom { flex-direction: column; gap: 10px; }
+  .landing-overview .hero-actions { display: flex; width: auto; }
+  .landing-overview .project-inner { grid-template-columns: minmax(0, 1fr) 150px; gap: 0 12px; padding-block: 8px; min-height: 0; }
+  .landing-overview .project-identity { grid-column: 1; grid-row: 1 / span 2; }
+  .landing-overview .project-identity h2 { font-size: 25px; }
+  .landing-overview .project-identity > p { font-size: 14px; margin-top: 5px; }
+  .landing-overview .project-visual { grid-column: 2; grid-row: 1; }
+  .landing-diagram { height: auto; aspect-ratio: 360 / 108; }
+  .system-caption { display: none; }
+  .landing-overview .project-action { grid-column: 2; grid-row: 2; justify-content: center; }
+  .landing-overview .project-action .button { min-height: 32px; gap: 8px; font-size: 13px; width: auto; justify-content: center; }
+  .landing-overview .project-action .button > span { width: 24px; height: 24px; font-size: 16px; }
+  .landing-overview .expertise { display: block; }
+  .landing-overview .expertise h2 { font-size: 16px; padding: 0; margin-bottom: 6px; }
+  .landing-overview .expertise ul { font-size: 12px; margin: 0; gap: 4px 12px; }
+  .landing-overview .contact { padding: 0; }
+  .landing-overview .email { font-size: 13px; }
+  .landing-overview .social-links { font-size: 13px; gap: 14px; }
+}
+@media (max-width: 560px) {
+  :root { --landing-header-height: 80px; }
+  .site-header { align-items: center; padding-block: 4px; }
+  .site-header .wordmark { font-size: 18px; }
+  .site-header nav { font-size: 12px; gap: 0 14px; }
+  .site-header nav a { min-height: 36px; }
+  .landing-overview .hero { padding-block: 4px 16px; }
+  .landing-overview .hero h1 { font-size: clamp(40px, 12.8vw, 70px); white-space: nowrap; max-width: none; line-height: 1; letter-spacing: -.065em; }
+  .landing-overview .hero-bottom { margin-top: 10px; gap: 10px; }
+  .landing-overview .positioning > p:first-child { font-size: 16px; max-width: 28em; }
+  .landing-overview .positioning .location { font-size: 13px; margin-top: 4px; }
+  .landing-overview .hero-actions .button { font-size: 12px; padding-inline: 10px; }
+  .landing-overview .project-inner { grid-template-columns: minmax(0, 1fr) 112px; padding-block: 6px; gap: 0 10px; }
+  .landing-overview .project-identity h2 { font-size: 23px; }
+  .landing-overview .overview-strip { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding-block: 12px; }
+  .landing-overview .contact { display: block; }
+}
+@media (max-width: 560px) and (max-height: 700px) {
+  :root { --landing-header-height: 56px; }
+  .site-header .wordmark { display: none; }
+  .site-header nav { width: 100%; max-width: none; justify-content: space-between; flex-wrap: nowrap; font-size: 13px; }
+  .site-header nav a { min-height: 44px; }
+  .hero-description-full { display: none; }
+  .hero-description-short { display: inline; }
+  .landing-overview .hero { padding-block: 0 8px; }
+  .landing-overview .hero-bottom { margin-top: 8px; gap: 6px; }
+  .landing-overview .positioning .location { margin-top: 2px; }
+  .landing-overview .overview-strip { display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding-block: 6px; }
+  .landing-overview .expertise h2 { position: absolute; width: 1px; height: 1px; /* taste-skill-ignore: accessible hidden heading. */ overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .landing-overview .contact > div { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 14px; line-height: 18px; }
+  .landing-overview .expertise ul { line-height: 16px; }
+  .landing-overview .social-links { margin-top: 0; }
+}

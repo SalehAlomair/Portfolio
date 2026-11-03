@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.next/
+out/
+.env
+.env.local
+.env.*.local
+work/
+.taste-skill/
+.DS_Store
+__pycache__/
+.venv/
+backend/data/
