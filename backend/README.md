@@ -68,8 +68,8 @@ The website remains a static export. Host the Python API separately and set
 Add the website origin to `TWIN_ALLOWED_ORIGINS`.
 
 For a Vercel FastAPI project, choose `backend` as the root directory of this
-repository. The `app.py` entrypoint and `requirements.txt` are then at that
-project root. Set `DEEPSEEK_API_KEY`, `DISCORD_WEBHOOK_URL`,
+repository. The `app.py` entrypoint, `requirements.txt`, and `vercel.json`
+are then at that project root. Set `DEEPSEEK_API_KEY`, `DISCORD_WEBHOOK_URL`,
 `TWIN_RECORD_MODE=discord`, and
 `TWIN_ALLOWED_ORIGINS=https://salehalomair.github.io` as server environment
 variables. Do not use the local `TWIN_ENV_FILE` path on the hosted service.

@@ -36,8 +36,10 @@ The website now includes a small Python/FastAPI adapter based on the supplied
 conversation history and the two tool names. The original source is unchanged.
 See `backend/README.md` for setup and the exact additions. The backend has one
 application file and a public profile file; contact and unanswered-question
-records use a private JSONL file rather than a database. Contact saving requires
-the visitor's checkbox permission. Discord forwarding is off by default.
+records use a private JSONL file locally rather than a database. Contact saving
+requires the visitor's checkbox permission. The hosted API sends consented
+contact details to Discord instead of writing to temporary disk. It does not
+save unanswered questions.
 
 Without configuration, the chat is a **clearly labeled curated portfolio preview**. It uses fixed answers from verified portfolio information, makes no inference request and cannot send notifications. Completed conversation turns are kept in sessionStorage for the current tab (up to 48 messages), so closing the panel or reloading retains them. New chat clears them; closing the tab ends the session. No localStorage is used. Preview and live-backend conversations use separate storage keys. If storage is blocked, the chat falls back to memory.
 
@@ -75,9 +77,13 @@ The current message is **not** duplicated in history. Response:
 { "response": "Saleh has built…" }
 ```
 
-The implementation in `backend/app.py` owns DeepSeek inference, tool calling and recording. Add `"contact_consent": true` to the request only when the visitor has checked the contact permission box. No automatic retries occur. Manual retries reuse `X-Request-ID`; the backend caches completed replies and deduplicates tool records. Optional Discord forwarding applies only to consented contact records.
+The implementation in `backend/app.py` owns DeepSeek inference, tool calling and recording. Add `"contact_consent": true` to the request only when the visitor has checked the contact permission box. No automatic retries occur. Manual retries reuse `X-Request-ID`; the backend caches completed replies and deduplicates local tool records. On the hosted API, only consented contact details are sent to Discord; unanswered questions are not recorded.
 
-Configure `TWIN_ALLOWED_ORIGINS` to allow the portfolio origin `https://salehalomair.github.io` when hosting the API. Development origins are allowed by default. Credentials are omitted by the client. The backend validates input, caps tool rounds and has a 25-second execution timeout. Configure public rate limits at the hosting gateway before exposing the API.
+The hosted API runs at `https://portfolio-twin-api.vercel.app/chat` and allows
+the portfolio origin `https://salehalomair.github.io`. Development origins are
+allowed by default in local mode. Credentials are omitted by the client. The
+backend validates input, caps tool rounds and has a 25-second execution timeout.
+Keep provider spending limits and gateway rate limits in mind for public use.
 
 HTTPS is required, except loopback HTTP when the website itself runs locally. The client rejects blank/oversized questions, prevents duplicate in-flight submissions, caps the outbound context at 24 messages including the current question and times out after 30 seconds. Answers are limited to 20,000 characters. A safe React renderer handles paragraphs, lists, emphasis, links and fenced code; raw HTML and unsafe link protocols are never rendered.
 
@@ -92,8 +98,12 @@ The workflow can also be run manually.
 
 1. Review the local preview and commit/push the changes to `main`.
 2. In repository **Settings → Pages**, select **GitHub Actions** as the source.
-3. If connecting the live backend, set the repository variable `NEXT_PUBLIC_CHAT_ENDPOINT` to its complete HTTPS `/chat` URL. The existing `VITE_CHAT_ENDPOINT` repository variable is also supported. Otherwise leave both unset for preview mode.
+3. The workflow uses the deployed Vercel FastAPI URL by default. To change it,
+   set the repository variable `NEXT_PUBLIC_CHAT_ENDPOINT` to another complete
+   HTTPS `/chat` URL.
 4. Monitor **Actions → Build and deploy**, or choose **Run workflow** for a manual deployment.
 5. Verify the resume, source links and chat at `https://salehalomair.github.io/Portfolio/`.
 
-The workflow installs with `pnpm install --frozen-lockfile`, builds with `NEXT_PUBLIC_BASE_PATH=/Portfolio` and uploads `out/`. GitHub Pages serves the static frontend; it cannot run the Python backend. Deploy that separately and verify its CORS and tool behavior before enabling the live endpoint.
+The workflow installs with `pnpm install --frozen-lockfile`, builds with
+`NEXT_PUBLIC_BASE_PATH=/Portfolio` and uploads `out/`. GitHub Pages serves the
+static frontend; Vercel hosts the Python backend separately.

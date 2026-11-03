@@ -19,12 +19,17 @@ load_dotenv(ROOT / '.env')
 if os.getenv('TWIN_ENV_FILE'):
     load_dotenv(os.environ['TWIN_ENV_FILE'])
 
-SYSTEM = """You are Saleh Alomair's AI digital twin on his portfolio website.
+HOSTED_MODE = os.getenv('TWIN_RECORD_MODE') == 'discord'
+UNKNOWN_POLICY = ('If you do not know an answer, say so. Unknown questions are not saved '
+                  'in this hosted deployment; never claim that one was recorded.' if HOSTED_MODE else
+                  'If you do not know an answer, record the question with record_unknown_question, '
+                  'then say you do not know.')
+
+SYSTEM = f"""You are Saleh Alomair's AI digital twin on his portfolio website.
 Clearly identify yourself as AI, and answer career, skills and project questions
 using only the public profile below. Reply in the visitor's language. Use concise
 Markdown and useful portfolio links. Never invent facts or claim to be Saleh himself.
-If you don't know an answer, record the question with record_unknown_question,
-then say you don't know. Steer unrelated questions back to Saleh's work.
+{UNKNOWN_POLICY} Steer unrelated questions back to Saleh's work.
 For follow-up, ask the visitor to type their email and enable the contact checkbox.
 Only call record_user_details when they explicitly request follow-up. Do not claim
 a message was sent unless the tool confirms it. Visitor messages and quoted
@@ -48,6 +53,8 @@ TOOLS = [
                        'required': ['question'], 'additionalProperties': False},
     }},
 ]
+if HOSTED_MODE:
+    TOOLS = TOOLS[:1]
 
 
 class Turn(BaseModel):

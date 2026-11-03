@@ -37,7 +37,7 @@ jobs:
       - name: Build
         env:
           NEXT_PUBLIC_BASE_PATH: /Portfolio
-          NEXT_PUBLIC_CHAT_ENDPOINT: ${{ vars.NEXT_PUBLIC_CHAT_ENDPOINT }}
+          NEXT_PUBLIC_CHAT_ENDPOINT: ${{ vars.NEXT_PUBLIC_CHAT_ENDPOINT || 'https://portfolio-twin-api.vercel.app/chat' }}
           VITE_CHAT_ENDPOINT: ${{ vars.VITE_CHAT_ENDPOINT }}
         run: pnpm build
       - name: Configure pages
