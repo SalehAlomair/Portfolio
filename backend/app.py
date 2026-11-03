@@ -97,6 +97,24 @@ async def run_tool(name, arguments, body, request_id):
         data = {k: v for k, v in arguments.items() if k in {'email', 'name', 'notes'}}
     else:
         data = {'question': body.message}
+    # Hosted functions do not have durable local storage. In this mode, only
+    # consented contact details are delivered to Saleh; unknown questions are
+    # acknowledged as unsaved until a persistent store is configured.
+    if os.getenv('TWIN_RECORD_MODE') == 'discord':
+        if name == 'record_unknown_question':
+            return {'recorded': False, 'reason': 'Question storage is not configured.'}
+        webhook = os.getenv('DISCORD_WEBHOOK_URL', '')
+        if not webhook.startswith('https://discord.com/api/webhooks/'):
+            return {'recorded': False, 'notification': 'unavailable'}
+        try:
+            async with httpx.AsyncClient(timeout=3) as sender:
+                response = await sender.post(webhook, json={
+                    'content': 'Portfolio follow-up\n' + json.dumps(data, ensure_ascii=False),
+                    'allowed_mentions': {'parse': []}})
+                response.raise_for_status()
+            return {'recorded': True, 'notification': 'sent'}
+        except httpx.HTTPError:
+            return {'recorded': False, 'notification': 'failed'}
     record = {'request_id': request_id, 'tool': name, 'data': data}
     path = ROOT / 'data' / 'records.jsonl'
     path.parent.mkdir(exist_ok=True)

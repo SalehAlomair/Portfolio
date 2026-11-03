@@ -13,6 +13,9 @@ The original project is unchanged.
 - Contact records require both the checkbox and an email in the current message.
   Discord forwarding is optional and off by default. Unanswered questions are
   saved locally, without Discord forwarding.
+- For a hosted function, set `TWIN_RECORD_MODE=discord`. With a valid webhook,
+  consented contacts go directly to Discord; unanswered questions are not saved.
+  No temporary server file is used in this mode.
 
 ## Start
 
@@ -62,9 +65,17 @@ bounded execution and provider errors. No test sends a Discord notification.
 
 The website remains a static export. Host the Python API separately and set
 `NEXT_PUBLIC_CHAT_ENDPOINT` to its complete HTTPS `/chat` URL before rebuilding.
-Add the website origin to `TWIN_ALLOWED_ORIGINS`. Nothing has been deployed.
+Add the website origin to `TWIN_ALLOWED_ORIGINS`.
+
+For a Vercel FastAPI project, choose `backend` as the root directory of this
+repository. The `app.py` entrypoint and `requirements.txt` are then at that
+project root. Set `DEEPSEEK_API_KEY`, `DISCORD_WEBHOOK_URL`,
+`TWIN_RECORD_MODE=discord`, and
+`TWIN_ALLOWED_ORIGINS=https://salehalomair.github.io` as server environment
+variables. Do not use the local `TWIN_ENV_FILE` path on the hosted service.
 
 This deliberately simple backend runs as one process and keeps a small retry
 cache in memory. Tool records are deduplicated in the JSONL file. For an exposed
 public service, configure rate limits at your hosting gateway. The JSONL file
-needs persistent private storage if you want records to survive redeployment.
+needs persistent private storage if you want records to survive redeployment;
+the hosted Discord mode bypasses this file.

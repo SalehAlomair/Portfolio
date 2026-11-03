@@ -81,6 +81,33 @@ class TwinTests(unittest.TestCase):
         self.assertEqual(self.post({'message': 'Contact me at visitor@example.test', 'contact_consent': True}).status_code, 200)
         self.assertEqual(self.records()[0]['data']['email'], 'visitor@example.test')
 
+    def test_hosted_unknown_question_does_not_write_ephemeral_file(self):
+        with patch.dict(service.os.environ, {'TWIN_RECORD_MODE': 'discord'}):
+            result = asyncio.run(service.run_tool('record_unknown_question', {},
+                service.ChatRequest(message='A question with no answer'), 'hosted-unknown'))
+        self.assertEqual(result['recorded'], False)
+        self.assertEqual(self.records(), [])
+
+    def test_hosted_contact_sends_only_with_consent(self):
+        sender = AsyncMock()
+        sender.post.return_value.raise_for_status = lambda: None
+        context = AsyncMock()
+        context.__aenter__.return_value = sender
+        with patch.dict(service.os.environ, {
+            'TWIN_RECORD_MODE': 'discord',
+            'DISCORD_WEBHOOK_URL': 'https://discord.com/api/webhooks/test/secret',
+        }), patch.object(service.httpx, 'AsyncClient', return_value=context):
+            denied = asyncio.run(service.run_tool('record_user_details',
+                {'email': 'visitor@example.test'},
+                service.ChatRequest(message='Contact me at visitor@example.test'), 'denied'))
+            sent = asyncio.run(service.run_tool('record_user_details',
+                {'email': 'visitor@example.test'},
+                service.ChatRequest(message='Contact me at visitor@example.test', contact_consent=True), 'consented'))
+        self.assertIn('error', denied)
+        self.assertEqual(sent, {'recorded': True, 'notification': 'sent'})
+        self.assertEqual(sender.post.call_count, 1)
+        self.assertEqual(self.records(), [])
+
     def test_bad_tool_json_can_recover(self):
         self.create.side_effect = [completion(None, 'record_user_details', '[]'), completion('Please supply an email.')]
         self.assertEqual(self.post().status_code, 200)
