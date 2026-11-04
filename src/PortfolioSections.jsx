@@ -21,7 +21,7 @@ const caseNotes = {
     problem:
       "A portfolio gives a quick overview, but recruiters often have specific questions about project decisions, experience or fit. An assistant needs grounded context and a clear route to contact the person behind the work.",
     scope:
-      "Adapted from the original Python / Gradio twin into a small FastAPI backend. The local website can use real DeepSeek answers and server-side tools; public hosting still requires deploying that backend.",
+      "Adapted from the original Python / Gradio twin into a small FastAPI backend. The public portfolio now uses live DeepSeek answers; unanswered questions are not stored on the hosted service.",
   },
 };
 const expertise = [

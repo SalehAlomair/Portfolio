@@ -62,7 +62,7 @@ export const featuredProjects = [
     decisions: [
       "Model keys, Discord webhooks and all tool execution remain on the server.",
       "The frontend sends a message and prior history to a configurable /chat endpoint and safely renders returned text.",
-      "A FastAPI /chat endpoint supports live answers, unanswered-question recording and contact details saved with visitor permission.",
+      "A hosted FastAPI /chat endpoint serves live answers and sends contact details through Discord only with visitor permission.",
     ],
     stack: [
       "Python",
