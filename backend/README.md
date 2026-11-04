@@ -63,9 +63,11 @@ bounded execution and provider errors. No test sends a Discord notification.
 
 ## Hosting
 
-The website remains a static export. Host the Python API separately and set
-`NEXT_PUBLIC_CHAT_ENDPOINT` to its complete HTTPS `/chat` URL before rebuilding.
-Add the website origin to `TWIN_ALLOWED_ORIGINS`.
+The website remains a static export. The Python API is deployed at
+`https://portfolio-twin-api.vercel.app/chat` and the GitHub Pages build uses
+that complete HTTPS URL. The Vercel project is connected to this repository
+with `backend` as its root directory. Add the website origin to
+`TWIN_ALLOWED_ORIGINS` when changing the public domain.
 
 For a Vercel FastAPI project, choose `backend` as the root directory of this
 repository. The `app.py` entrypoint, `requirements.txt`, and `vercel.json`
